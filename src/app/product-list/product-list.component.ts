@@ -22,6 +22,9 @@ onClick()
 {
   console.log("Item added to cart")
   this.message ='Item added to cart';
+ // this.cartService.addProductToCart(this.productItem).subscribe(() => {
+ //   this.msg.sendMsg(this.productItem)
+  // })
 }
 
   handleSuccessfulResponse(response) {
