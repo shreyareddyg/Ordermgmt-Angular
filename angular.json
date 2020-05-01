@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OrderMgmt"
+    }
+  },
+  "defaultProject": "OrderMgmt",
+  "cli": {
+    "analytics": false
+  }
 }
