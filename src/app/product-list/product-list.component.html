@@ -8,18 +8,18 @@
         </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let e of products">
-                <td> {{e.productid}} </td>
+            <tr *ngFor="let e of product">
+                <td > {{e.productid}} </td>
                 <td> {{e.productUin}} </td>
                 <td>
-                    <button type="button" class="btn btn-sm  btn-primary" (click)="onClick()" >Add to Cart</button>
+                    <button type="button" class="btn btn-sm  btn-primary" (click)="add(e.productid)" >Add to Cart</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div align= "center">
+<div >
     <h2>{{message}}</h2>
 </div>
 

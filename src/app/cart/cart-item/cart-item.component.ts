@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-item',
@@ -7,11 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CartItemComponent implements OnInit {
 
-  @Input() cartItem: any
+   @Input() cartItem: any
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
   }
+
+ 
+
 
 }

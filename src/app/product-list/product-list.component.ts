@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyserviceService, Product } from '../myservice.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProviderAstType } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-list',
@@ -8,26 +9,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  public message= "";
-  products : Product[];
-
-  constructor(private myservice: MyserviceService, private router: Router) { }
+  public message = "";
+  product: Product[];
+  productId: String;
+  constructor(private _myservice: MyserviceService) { }
 
   ngOnInit(): any {
-    this.myservice.getList().subscribe(
+    this._myservice.getList().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
   }
-onClick()
-{
-  console.log("Item added to cart")
-  this.message ='Item added to cart';
- // this.cartService.addProductToCart(this.productItem).subscribe(() => {
- //   this.msg.sendMsg(this.productItem)
-  // })
-}
+
+
+  add(productId:String) {
+    console.log(productId);
+    this.message = 'Item added to cart';
+   this._myservice.addItemToCart(productId).subscribe(backendData => {         
+    console.log(backendData);
+    if (backendData) {}
+    })
+  }
 
   handleSuccessfulResponse(response) {
-    this.products = response;
+    this.product = response;
+    console.log(response);
   }
 }

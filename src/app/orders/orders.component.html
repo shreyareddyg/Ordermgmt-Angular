@@ -1,0 +1,21 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order id</th>
+            <th>User id</th>
+            <th>Address id</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of orders">
+                <td> {{e.orderId}} </td>
+                <td > {{e.userId}} </td>
+                <td> {{e.addressId}} </td>
+                <td>
+                    <button type="button" class="btn btn-sm  btn-primary" (click)="delete(e.productid)" >Add to Cart</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

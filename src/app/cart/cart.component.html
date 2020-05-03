@@ -1,1 +1,19 @@
-<p>cart works!</p>
+<div class="container">
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>productid</th>
+          <th>quantity</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let e of cartItems">
+          <td>{{e.productId}}</td>
+          <td>{{e.quantity}}</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<div>
+    <button type="button" class="btn btn-sm  btn-primary" (click)="buy()">Buy Now</button>
+</div>
