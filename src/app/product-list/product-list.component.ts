@@ -7,7 +7,8 @@ import { MyserviceService, Product } from '../myservice.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  message:String;
+  message =" ";
+  nCnt: number = 0;
   product: Product[];
   selectedProductToCart: Product;
   addedProductId: String;
@@ -29,6 +30,8 @@ addedtocart = false;
       this.addedtocart = true;
      this.addedProductId=productId;
      this.selectedProductToCart=this.product.find(i=>i.productid==productId);
+     this.nCnt = this.nCnt + 1;
+     this.message="clicked" + this.nCnt;
     }
     })
   }

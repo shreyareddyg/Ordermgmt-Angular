@@ -30,7 +30,7 @@ export class OrdersComponent implements OnInit {
 
         if (result != null) {
 
-          // alert("Deleted Succesfully the  orderId: " + orderId);
+           alert("Deleted Succesfully the  orderId: " + orderId);
           this.orders = this.orders.filter(order => order.orderId != orderId)
         }
       });
