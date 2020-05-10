@@ -1,0 +1,9 @@
+thead,th
+{
+ background-color: rgb(65, 150, 219);
+}
+
+
+.alert alert-info{
+    text-align: center;
+}

@@ -1,20 +1,37 @@
-
-<div class="container">
-  <h1 align="center">Welcome To Order Management</h1>
-  <nav class="navbar navbar-expand-sm btn-secondary navbar-dark">
-    <a class="navbar-brand" href="">
-    </a>
-    <ul class="nav nav-pills nav-fill ">
-    <li class="nav-item " >
-      <a class="nav-link" class="btn btn-outline-success  btn-sm  mr-3" routerLink="/list">Products List</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" class="btn btn-outline-success btn-sm mr-3"  routerLink="/cart">Cart</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" class="btn btn-outline-success btn-sm mr-3"  routerLink="/order">My Orders</a>
-    </li>
-  </ul>
+ 
+ <div class="container-fluid">
+    <nav class="nav navbar-nav navbar-center btn-dark o-visible" align="center" aria-label="name">
+      <strong><h1>ORDER MANAGEMENT<span class="badge badge-pill badge-success">Great Outdoors</span></h1></strong>
+      </nav>
+     
+  <nav class="navbar navbar-expand-large btn-dark o-visible" aria-label="Buttons">  
+    
+    <ul class="nav">
+      <li class="nav-item ">
+        <a class="nav-link" class="btn btn-success  btn-large  mr-3" routerLink="/list"><i class="fa fa-list" aria-hidden="true"></i> Products List</a>
+      </li>
+      <li class="nav-item">
+      
+        <a class="nav-link" class="btn btn-success btn-large mr-3" routerLink="/cart"><em class="fa fa-shopping-cart"></em> Cart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" class="btn btn-success btn-large mr-3" routerLink="/order"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> My Orders</a>
+      </li>
+    </ul>
+    <i class="fa fa-user-o" aria-hidden="true"></i>
+    <div class="dropdown o-visible" style="float: right;">
+      <ul class="dropbtn">
+        <strong>USER:</strong>
+        <li *ngIf=activeUser>{{activeUser.username}}<em class="fa fa-caret-down"></em>
+          <ul class="dropdown-submenu">
+            <li *ngFor="let user of unselectedUsers" (click)=selectedUser(user)>
+              {{user.username}} 
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </nav>
-  </div>
-  <router-outlet></router-outlet>
+  
+ 
+<router-outlet></router-outlet>

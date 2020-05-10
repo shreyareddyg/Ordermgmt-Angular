@@ -1,10 +1,11 @@
+<html>
 <div class="container">
-    <table class="table table-striped">
+    <table class="table table-striped table-dark" aria-describedby="myproducts">
         <thead>
         <tr>
-            <th>PRODUCT ID</th>
-            <th>PRODUCTUIN</th>
-            <th>ACTION</th>
+            <th id="prod id">PRODUCT ID</th>
+            <th id="uin">PRODUCTUIN</th>
+            <th id="act">ACTION</th>
         </tr>
         </thead>
         <tbody>
@@ -12,14 +13,17 @@
                 <td > {{e.productid}} </td>
                 <td> {{e.productUin}} </td>
                 <td>
-                    <button type="button" class="btn btn-sm  btn-primary" (click)="add(e.productid)" >Add to Cart</button>
+                    <button type="button" class="btn btn-sm  btn-primary" (click)="add(e.productid)" ><strong><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</strong></button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div >
-    <h2>{{message}}</h2>
-</div>
-
+<div class="alert alert-success" *ngIf=addedtocart>
+    <strong>Successfully product added to Cart! Productid:</strong>  {{selectedProductToCart.productid}}
+    <strong>productUin:</strong>
+    {{selectedProductToCart.productUin}}
+  </div>
+  
+  </html>

@@ -1,0 +1,66 @@
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  list-style: none;
+}
+
+/* Add a red background color to navbar links on hover */
+/*.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}*/
+
+.dropbtn:hover .dropdown-submenu{
+  display: block!important;
+  cursor: pointer;
+}
+
+.nav-item {
+ 
+  padding-right: 188px;
+  padding-left: 80px;
+}
+
+
+.dropdown-submenu{
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  list-style: none;
+  z-index: 9999;
+  padding: 0px;
+  box-shadow: 0px 0px 4px #bebebe;
+  margin-top: 13px;
+  margin-left: -16px;
+}
+
+.o-visible{
+  overflow: visible!important;
+}
+
+.dropdown-submenu li{
+  float: none!important;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block!important;
+  text-align: left;
+}
+
+.dropdown-submenu li:hover{
+  background-color: darkgreen;
+  cursor: pointer;
+}
+

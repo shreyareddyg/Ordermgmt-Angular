@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MyserviceService, Product } from '../myservice.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ProviderAstType } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-list',
@@ -9,9 +7,11 @@ import { ProviderAstType } from '@angular/compiler';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  public message = "";
+  message:String;
   product: Product[];
-  productId: String;
+  selectedProductToCart: Product;
+  addedProductId: String;
+addedtocart = false;
   constructor(private _myservice: MyserviceService) { }
 
   ngOnInit(): any {
@@ -22,11 +22,14 @@ export class ProductListComponent implements OnInit {
 
 
   add(productId:String) {
-    console.log(productId);
-    this.message = 'Item added to cart';
-   this._myservice.addItemToCart(productId).subscribe(backendData => {         
+  let userId =   localStorage.getItem("activeUser");
+   this._myservice.addItemToCart(productId, userId).subscribe(backendData => {         
     console.log(backendData);
-    if (backendData) {}
+    if (backendData!=null) {
+      this.addedtocart = true;
+     this.addedProductId=productId;
+     this.selectedProductToCart=this.product.find(i=>i.productid==productId);
+    }
     })
   }
 

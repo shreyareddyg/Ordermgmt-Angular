@@ -1,0 +1,12 @@
+thead
+{
+ background-color: rgb(65, 150, 219);
+}
+
+.btn-large{
+    
+position:fixed;
+  
+  left:1040px;
+  text-outline: 50px;
+}

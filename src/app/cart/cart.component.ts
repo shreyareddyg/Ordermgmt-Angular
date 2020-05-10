@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, MyserviceService, Cart } from '../myservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,22 +10,38 @@ import { Product, MyserviceService, Cart } from '../myservice.service';
 export class CartComponent implements OnInit {
 
   cartItems: Cart[];
-  productId:number;
-  constructor(private myservice: MyserviceService) { }
+  productId: number;
+  constructor(private myservice: MyserviceService, private router: Router) { }
 
   ngOnInit(): any {
-    this.myservice.getProducts().subscribe(
+    let userId = localStorage.getItem("activeUser");
+    console.log("userId", userId);
+    this.myservice.getProducts(userId).subscribe(
       response => this.handleSuccessfulResponse(response),
     );
   }
 
-buy()
-{
-  this.myservice.createOrder().subscribe(backendData => {         
-    console.log(backendData);
-    if (backendData) {
-      //
-    }
+  deleteproduct(productId: String): any {
+    let userId = localStorage.getItem("activeUser");
+    console.log("delete product");
+    this.myservice.removeProductFromCart(productId, userId).subscribe(
+      (result) => {
+        if (result != null) {
+    
+          this.cartItems=this.cartItems.filter(cart=> cart.productId!=productId)
+          alert("Deleted Succesfully the  ProductId: " + productId);
+        }
+      });
+  }
+
+
+  buy() {
+    let userId = localStorage.getItem("activeUser");
+    this.myservice.createOrder(userId).subscribe(backendData => {
+      console.log(backendData);
+      if (backendData) {
+        this.router.navigate(['/order']);
+      }
     })
   }
 

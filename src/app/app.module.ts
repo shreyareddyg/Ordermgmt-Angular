@@ -1,26 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { OrdersComponent } from './orders/orders.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     CartComponent,
-    CartItemComponent,
     OrdersComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SelectDropDownModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BsDropdownModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
