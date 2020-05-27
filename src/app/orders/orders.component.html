@@ -1,11 +1,13 @@
 
-<div *ngIf="orders.length == 0" class="alert alert-info">There is no Order to Show!</div>
-<div *ngIf="orders.length > 0" class="container">
+<div *ngIf="orders && orders.length == 0" class="alert alert-info">There is no Order to Show!</div>
+<div *ngIf="orders && orders.length > 0" class="container">
     <table class="table table-striped " aria-describedby="mydesc">
         <thead>
             <tr>
                 <th id="id">ORDER ID</th>
-                <th id="time">ORDER INITIATE TIME</th>
+                <th id="status">ORDER DISPATCH STATUS</th>
+                <th id="itime">ORDER INITIATE TIME</th>
+                <th id="dtime">ORDER DISPATCH TIME</th>
                 <th id="address">ADDRESS ID</th>
                 <th id="act">ACTION</th>
             </tr>
@@ -16,7 +18,9 @@
                     <a> {{e.orderId}} </a>
                    
                 </td>
+                <td> {{e.orderDispatchStatus}} </td>
                 <td> {{e.orderInitiateTime}} </td>
+               <td> {{e.orderDispatchTime}} </td>
                 <td> {{e.addressId}} </td>
                 <td>
                     <a class="btn btn-danger" (click)="delete(e.orderId)" aria-label="Delete">

@@ -3,3 +3,6 @@ thead
  background-color: rgb(65, 150, 219);
 }
 
+tr, th{
+    text-align: center;
+}

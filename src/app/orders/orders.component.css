@@ -7,3 +7,11 @@ thead,th
 .alert alert-info{
     text-align: center;
 }
+
+#act, #id, #status, #itime, #dtime, #addresss{
+    text-align: center;
+}
+
+tr{
+    text-align: center;
+}

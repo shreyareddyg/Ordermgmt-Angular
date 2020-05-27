@@ -8,7 +8,6 @@ import { CartComponent } from './cart/cart.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OrdersComponent } from './orders/orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,9 +21,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     AppRoutingModule,
     SelectDropDownModule,
     FormsModule,
-    ReactiveFormsModule,
-    BsDropdownModule,
-    BsDropdownModule.forRoot()
+    ReactiveFormsModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

@@ -7,14 +7,14 @@ import { MyserviceService, Product } from '../myservice.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  message =" ";
-  nCnt: number = 0;
+
   product: Product[];
   selectedProductToCart: Product;
-  addedProductId: String;
+  addedProductId: string;
 addedtocart = false;
   constructor(private _myservice: MyserviceService) { }
 
+ 
   ngOnInit(): any {
     this._myservice.getList().subscribe(
       response => this.handleSuccessfulResponse(response),
@@ -22,7 +22,7 @@ addedtocart = false;
   }
 
 
-  add(productId:String) {
+  add(productId:string) {
   let userId =   localStorage.getItem("activeUser");
    this._myservice.addItemToCart(productId, userId).subscribe(backendData => {         
     console.log(backendData);
@@ -30,8 +30,7 @@ addedtocart = false;
       this.addedtocart = true;
      this.addedProductId=productId;
      this.selectedProductToCart=this.product.find(i=>i.productid==productId);
-     this.nCnt = this.nCnt + 1;
-     this.message="clicked" + this.nCnt;
+  
     }
     })
   }

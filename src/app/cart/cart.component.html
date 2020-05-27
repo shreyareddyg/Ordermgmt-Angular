@@ -1,6 +1,5 @@
- <html>
- <div *ngIf="cartItems.length == 0" class="alert alert-info">Your Cart is Empty. Add Products from the ProductList.</div> 
-<div *ngIf="cartItems.length > 0" class="container">
+<div *ngIf="cartItems && cartItems.length == 0" class="alert alert-info">Your Cart is Empty. Add Products from the ProductList.</div> 
+<div *ngIf="cartItems && cartItems.length > 0" class="container">
 <table class="table table-striped table-dark" aria-describedby="mydesc">
   <thead>
       <tr>
@@ -12,7 +11,7 @@
   <tbody>
       <tr *ngFor="let e of cartItems">
           <td>{{e.productId}}</td>
-          <td>{{e.quantity}}</td>
+          <td>{{e.quantity}}  </td>
           <td>
             <a class="btn btn-danger" (click)="deleteproduct(e.productId)" aria-label="Delete">
                 <i class="fa fa-trash-o" aria-hidden="true"> Delete</i>
@@ -22,7 +21,6 @@
   </tbody>
 </table>
 </div>
-<div *ngIf="cartItems.length > 0">
+<div *ngIf="cartItems && cartItems.length > 0">
     <button type="button" class="btn btn-large  btn-info" (click)="buy()"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Buy Now</button>
 </div>
-</html>

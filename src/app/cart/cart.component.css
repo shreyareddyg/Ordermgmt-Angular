@@ -10,3 +10,6 @@ position:fixed;
   left:1040px;
   text-outline: 50px;
 }
+tr, th{
+  text-align: center;
+}

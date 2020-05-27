@@ -7,7 +7,7 @@ import { MyserviceService } from './myservice.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = "angular-nav-dropdown-toggle";
+  title = "order management";
 
   activeUser: any;
   users: any[] = [];
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
         .forEach((i) => {
           this.unselectedUsers.push(i);
         });
+        console.log(this.unselectedUsers);
       console.log(response);
      
     });
@@ -37,15 +38,12 @@ export class AppComponent implements OnInit {
   selectedUser(selectedUser) {
     localStorage.setItem("activeUser", selectedUser.userId);
     this.activeUser = selectedUser;
+    console.log(selectedUser);
     this.unselectedUsers = [];
-   
+    
     this.unselectedUsers = this.users.filter((i) => i.userId != this.activeUser.userId);
    
-  
+    console.log(this.unselectedUsers);
   }
-
-
- 
-
 }
 

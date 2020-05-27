@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Order, MyserviceService, products } from '../myservice.service';
 
 @Component({
@@ -8,22 +8,22 @@ import { Order, MyserviceService, products } from '../myservice.service';
 })
 export class OrdersComponent implements OnInit {
   orders: Order[];
-  orderId: String;
+  orderId: string;
   product :products[];
-  expandedOrderId: String = "";
+  expandedOrderId: string = "";
 
-  @Input() orderIdParam: string;
+  
   constructor(private myservice: MyserviceService) { }
 
   ngOnInit(): any {
 
-
-    this.myservice.getAllOrders().subscribe(
+let userId = localStorage.getItem("activeUser");
+    this.myservice.getOrders(userId).subscribe(
       response => this.handleSuccessfulResponse(response),
     );
   }
 
-  delete(orderId: String): any {
+  delete(orderId: string): any {
     console.log("Ts order del test")
     this.myservice.removeOrder(orderId).subscribe(
       (result) => {

@@ -5,79 +5,74 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class MyserviceService {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getList() {
     console.log("ins service get list");
-    return this.httpService.get<Product[]>("http://localhost:6504/products/GetList");
+    return this.http.get<Product[]>("http://localhost:6504/products/GetList");
   }
 
 
-   public addItemToCart(productid: String, userId: String) {
+   public addItemToCart(productid: string, userId: string) {
     console.log("ins service get item");
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json' });
   let options = { headers: headers };
     var cart: Cart = new Cart(userId,productid,1);
-    var response = this.httpService.post<string>("http://localhost:6501/cart/addtocart", JSON.stringify(cart),options);
+    var response = this.http.post<string>("http://localhost:6501/cart/addtocart", JSON.stringify(cart),options);
   console.log(response);
   return response;
 	}
 
-  public  getProducts(userId: String) {
+
+  public  getProducts(userId: string) {
     console.log("ins service get products");
-		return this.httpService.get<Cart[]>("http://localhost:6501/cart/products/" + userId);
+		return this.http.get<Cart[]>("http://localhost:6501/cart/products/" + userId);
 	}
 
-  public createOrder(userId: String){
+  public createOrder(userId: string){
     console.log("ins service created order");
     let options = { headers:{ 'Content-Type': 'application/json'}  } 
-    var order: Order = new Order(userId,"46-152",'',' ',[]);
-    var response = this.httpService.post<string>("http://localhost:6502/order/createOrder", JSON.stringify(order), options);
+    var order: Order = new Order(userId,"46-152",'','intiated',' ',[]);
+    var response = this.http.post<string>("http://localhost:6502/order/createOrder", JSON.stringify(order), options);
   console.log(response);
   return response;
 	}
   
-	 public  getAllOrders() {
+	 public  getOrders(userId : string) {
     console.log("ins service get orders");
-		return this.httpService.get<Order[]>("http://localhost:6502/order/all");
+		return this.http.get<Order[]>("http://localhost:6502/order/getorder/" + userId);
 	}
 
   
-	public removeProductFromCart( productId: String, userId: String) {
+	public removeProductFromCart( productId: string, userId: string) {
 		const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.httpService.delete("http://localhost:6501/cart/" + userId + "/" +productId,  { headers, responseType: 'text'});
+    return this.http.delete("http://localhost:6501/cart/" + userId + "/" +productId,  { headers, responseType: 'text'});
 	}
 
 
-	public  removeOrder(orderId : String) {
+	public  removeOrder(orderId : string) {
 console.log("delete order")
 const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.httpService.delete("http://localhost:6502/order/" + orderId,  { headers, responseType: 'text'});
+    return this.http.delete("http://localhost:6502/order/" + orderId,  { headers, responseType: 'text'});
 	}
 
 
   public  getCustomers() {
     console.log("ins service get products");
-		return this.httpService.get<User[]>("http://localhost:6503/customer/users");
+		return this.http.get<User[]>("http://localhost:6503/customer/users");
 	}
 
 
- /* 	public getProductsForOrder(orderId :String ) {
-    console.log("ins service get products for orders");
-	
-		return this.httpService.get<Order[]>("http://localhost:6500/api/v1/orders/" + orderId + "/" + "products" );
-	}
-*/
 }
 
 export class Product {
-   productid: String;
-	 productUin: String;
+   productid: string;
+	 productUin: string;
   productispresent: boolean;
 
-  constructor(productid: String,productUin: String, productispresent: boolean)
+  constructor(productid: string,productUin: string, productispresent: boolean)
 {
   this.productUin=productUin;
   this.productid=productid;
@@ -86,11 +81,11 @@ export class Product {
 
 }
 export class Cart{
-  userId: String;
-  productId: String;
+  userId: string;
+  productId: string;
   quantity: number;
 
-constructor(userId: String,productId: String, quantity: number)
+constructor(userId: string,productId: string, quantity: number)
 {
   this.userId=userId;
   this.productId=productId;
@@ -98,33 +93,35 @@ constructor(userId: String,productId: String, quantity: number)
 }
 }
 export class products{
-  productId: String;
-   productStatus: String;
-  giftStatus: String;
-  productUIN:String;
+  productId: string;
+   productStatus: string;
+  giftStatus: string;
+  productUIN:string;
 }
 export class Order{
-  userId: String;
-  addressId: String;
-  orderId: String;
-  orderInitiateTime: String;
+  userId: string;
+  addressId: string;
+  orderId: string;
+  orderDispatchStatus: string;
+  orderInitiateTime: string;
   product:products[];
 
-constructor(userId: String,addressId: String, orderId: String,orderInitiateTime: String, product:products[])
+constructor(userId: string,addressId: string, orderId: string,orderDispatchStatus: string,orderInitiateTime: string, product:products[])
 {
   this.userId=userId;
   this.addressId=addressId;
   this.orderId=orderId;
+  this.orderDispatchStatus =orderDispatchStatus;
   this.orderInitiateTime=orderInitiateTime;
   this.product=product;
 }
 
 }
 export class User{
-  userId: String;
-  username: String;
+  userId: string;
+  username: string;
 
-  constructor(userId: String,username: String)
+  constructor(userId: string,username: string)
 {
   this.userId=userId;
   this.username=username;

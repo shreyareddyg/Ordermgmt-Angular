@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, MyserviceService, Cart } from '../myservice.service';
+import { MyserviceService, Cart } from '../myservice.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,18 +21,30 @@ export class CartComponent implements OnInit {
     );
   }
 
-  deleteproduct(productId: String): any {
+  deleteproduct(productId: string): any {
     let userId = localStorage.getItem("activeUser");
     console.log("delete product");
     this.myservice.removeProductFromCart(productId, userId).subscribe(
       (result) => {
-        if (result != null) {
-    
-          this.cartItems=this.cartItems.filter(cart=> cart.productId!=productId)
-          alert("Deleted Succesfully the  ProductId: " + productId);
+       // if(result!= "" && result!= null && result!="false" && typeof(result)== "undefined")
+        if (result!=null) {
+          let deletedProduct = this.cartItems.find(c => c.productId == productId);
+          if (deletedProduct && deletedProduct.quantity > 1) {
+            deletedProduct.quantity = deletedProduct.quantity - 1
+          }
+          else{
+          const index = this.cartItems.indexOf(deletedProduct, 0);
+          if (index > -1) {
+             this.cartItems.splice(index, 1);
+          }
         }
+          
+            alert("Deleted Succesfully the  ProductId: " + productId);
+        }
+      
       });
   }
+
 
 
   buy() {
